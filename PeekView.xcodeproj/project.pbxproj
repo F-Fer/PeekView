@@ -10,6 +10,7 @@
 		AA0000000000000000000010 /* PeekViewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000001 /* PeekViewApp.swift */; };
 		AA0000000000000000000011 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000002 /* ContentView.swift */; };
 		AA0000000000000000000012 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000003 /* Assets.xcassets */; };
+		AA0000000000000000000013 /* PDFKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000007 /* PDFKitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		AA0000000000000000000004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA0000000000000000000005 /* PeekView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PeekView.entitlements; sourceTree = "<group>"; };
 		AA0000000000000000000006 /* PeekView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeekView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000007 /* PDFKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 			children = (
 				AA0000000000000000000001 /* PeekViewApp.swift */,
 				AA0000000000000000000002 /* ContentView.swift */,
+				AA0000000000000000000007 /* PDFKitView.swift */,
 				AA0000000000000000000003 /* Assets.xcassets */,
 				AA0000000000000000000004 /* Info.plist */,
 				AA0000000000000000000005 /* PeekView.entitlements */,
@@ -131,6 +134,7 @@
 			files = (
 				AA0000000000000000000010 /* PeekViewApp.swift in Sources */,
 				AA0000000000000000000011 /* ContentView.swift in Sources */,
+				AA0000000000000000000013 /* PDFKitView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
