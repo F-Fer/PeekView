@@ -25,6 +25,6 @@ struct PeekViewApp: App {
         DocumentGroup(viewing: PDFFileDocument.self) { config in
             ContentView(document: config.document.pdfDocument)
         }
-        .defaultSize(width: 800, height: 900)
+        .defaultSize(width: 1200, height: 1000)
     }
 }
