@@ -34,7 +34,11 @@ class PeekablePDFView: PDFView {
             return
         }
 
-        showPeekPopover(for: destination, at: annotation.bounds, on: page)
+        if event.modifierFlags.contains(.command) {
+            go(to: destination)
+        } else {
+            showPeekPopover(for: destination, at: annotation.bounds, on: page)
+        }
     }
 
     private func showPeekPopover(for destination: PDFDestination, at annotationBounds: CGRect, on page: PDFPage) {
