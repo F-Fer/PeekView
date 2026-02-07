@@ -2,10 +2,10 @@ import SwiftUI
 import PDFKit
 
 struct PDFKitView: NSViewRepresentable {
+    let pdfView: PDFView
     let document: PDFDocument?
 
     func makeNSView(context: Context) -> PDFView {
-        let pdfView = PDFView()
         pdfView.autoScales = true
         return pdfView
     }

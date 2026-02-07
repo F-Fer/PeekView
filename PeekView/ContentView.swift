@@ -5,21 +5,53 @@ import UniformTypeIdentifiers
 struct ContentView: View {
     @State private var document: PDFDocument?
     @State private var showFileImporter = false
+    @State private var pdfView = PDFView()
+    @State private var showSidebar = true
+    @State private var sidebarWidth: CGFloat = 140
 
     var body: some View {
-        Group {
+        HStack(spacing: 0) {
+            if showSidebar && document != nil {
+                ThumbnailSidebarView(pdfView: pdfView)
+                    .frame(width: sidebarWidth)
+                Divider()
+                    .frame(width: 4)
+                    .contentShape(Rectangle())
+                    .onHover { hovering in
+                        if hovering {
+                            NSCursor.resizeLeftRight.push()
+                        } else {
+                            NSCursor.pop()
+                        }
+                    }
+                    .gesture(
+                        DragGesture(coordinateSpace: .global)
+                            .onChanged { value in
+                                sidebarWidth = min(max(value.location.x, 100), 260)
+                            }
+                    )
+            }
             if let document {
-                PDFKitView(document: document)
+                PDFKitView(pdfView: pdfView, document: document)
             } else {
                 ContentUnavailableView(
                     "No PDF Open",
                     systemImage: "doc.text",
                     description: Text("Open a PDF file to get started")
                 )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
-        .frame(minWidth: 600, minHeight: 400)
+        .animation(.easeInOut(duration: 0.2), value: showSidebar)
+        .frame(minWidth: 500, minHeight: 400)
         .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button {
+                    showSidebar.toggle()
+                } label: {
+                    Image(systemName: "sidebar.leading")
+                }
+            }
             ToolbarItem {
                 Button("Open", systemImage: "folder") {
                     showFileImporter = true

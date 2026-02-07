@@ -6,5 +6,6 @@ struct PeekViewApp: App {
         WindowGroup {
             ContentView()
         }
+        .defaultSize(width: 800, height: 900)
     }
 }
