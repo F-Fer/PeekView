@@ -5,7 +5,7 @@ import UniformTypeIdentifiers
 struct ContentView: View {
     @State private var document: PDFDocument?
     @State private var showFileImporter = false
-    @State private var pdfView = PDFView()
+    @State private var pdfView = PeekablePDFView()
     @State private var showSidebar = true
     @State private var sidebarWidth: CGFloat = 140
     @State private var searchText = ""
