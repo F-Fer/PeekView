@@ -1,10 +1,8 @@
 import SwiftUI
 import PDFKit
-import UniformTypeIdentifiers
 
 struct ContentView: View {
-    @State private var document: PDFDocument?
-    @State private var showFileImporter = false
+    let document: PDFDocument?
     @State private var pdfView = PeekablePDFView()
     @State private var showSidebar = true
     @State private var sidebarWidth: CGFloat = 140
@@ -90,23 +88,6 @@ struct ContentView: View {
                 }
                 .keyboardShortcut("f")
             }
-            ToolbarItem {
-                Button("Open", systemImage: "folder") {
-                    showFileImporter = true
-                }
-                .keyboardShortcut("o")
-            }
-        }
-        .fileImporter(
-            isPresented: $showFileImporter,
-            allowedContentTypes: [.pdf]
-        ) { result in
-            if case .success(let url) = result {
-                loadPDF(from: url)
-            }
-        }
-        .onOpenURL { url in
-            loadPDF(from: url)
         }
         } // NavigationStack
     }
@@ -157,15 +138,8 @@ struct ContentView: View {
         pdfView.go(to: selection)
     }
 
-    private func loadPDF(from url: URL) {
-        let didAccess = url.startAccessingSecurityScopedResource()
-        defer {
-            if didAccess { url.stopAccessingSecurityScopedResource() }
-        }
-        document = PDFDocument(url: url)
-    }
 }
 
 #Preview {
-    ContentView()
+    ContentView(document: nil)
 }
