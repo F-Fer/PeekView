@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var searchResults: [PDFSelection] = []
     @State private var currentResultIndex = 0
     @State private var isSearchFieldPresented = false
+    @State private var searchTask: Task<Void, Never>?
 
     var body: some View {
         NavigationStack {
@@ -111,18 +112,32 @@ struct ContentView: View {
     }
 
     private func performSearch() {
+        searchTask?.cancel()
+
         guard let document, !searchText.isEmpty else {
             searchResults = []
             currentResultIndex = 0
             pdfView.highlightedSelections = nil
             return
         }
-        searchResults = document.findString(searchText, withOptions: [.caseInsensitive])
-        pdfView.highlightedSelections = searchResults
-        currentResultIndex = 0
-        if let first = searchResults.first {
-            pdfView.currentSelection = first
-            pdfView.go(to: first)
+
+        let query = searchText
+        searchTask = Task {
+            try? await Task.sleep(for: .milliseconds(300))
+            guard !Task.isCancelled else { return }
+
+            let results = await Task.detached {
+                document.findString(query, withOptions: [.caseInsensitive])
+            }.value
+            guard !Task.isCancelled else { return }
+
+            searchResults = results
+            pdfView.highlightedSelections = results
+            currentResultIndex = 0
+            if let first = results.first {
+                pdfView.currentSelection = first
+                pdfView.go(to: first)
+            }
         }
     }
 
