@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var searchText = ""
     @State private var searchResults: [PDFSelection] = []
     @State private var currentResultIndex = 0
+    @State private var isSearchFieldPresented = false
 
     var body: some View {
         NavigationStack {
@@ -48,7 +49,7 @@ struct ContentView: View {
         }
         .animation(.easeInOut(duration: 0.2), value: showSidebar)
         .frame(minWidth: 500, minHeight: 400)
-        .searchable(text: $searchText)
+        .searchable(text: $searchText, isPresented: $isSearchFieldPresented)
         .onChange(of: searchText) {
             performSearch()
         }
@@ -81,6 +82,12 @@ struct ContentView: View {
                         }
                     }
                 }
+            }
+            ToolbarItem {
+                Button("Find", systemImage: "magnifyingglass") {
+                    isSearchFieldPresented = true
+                }
+                .keyboardShortcut("f")
             }
             ToolbarItem {
                 Button("Open", systemImage: "folder") {
