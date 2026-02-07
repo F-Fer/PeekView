@@ -4,10 +4,11 @@ A macOS PDF reader built for academic papers. Click any in-document reference li
 
 ## Features
 
-- **Peek references** — Click an internal link (e.g. a citation or figure reference) to preview the target page in a popover with the relevant line highlighted
+- **Peek references** — Click an internal link (e.g. a citation or figure reference) to preview the target page in a popover
+- **Multi-window** — Open multiple papers simultaneously, each in its own window
 - **Thumbnail sidebar** — Resizable page thumbnail navigator synced with the main view
 - **Text search** — Debounced, parallelized full-text search with result highlighting and navigation
-- **Keyboard shortcuts** — `Cmd+O` open, `Cmd+F` find, `Enter` next search result
+- **Keyboard shortcuts** — `Cmd+F` find, `Enter` next search result
 
 ## Requirements
 
@@ -30,7 +31,7 @@ PeekView registers as an alternate PDF viewer. To set it as your default, right-
 
 ```
 PeekView/
-├── PeekViewApp.swift           # App entry point
+├── PeekViewApp.swift           # App entry point, document-based window management
 ├── ContentView.swift           # Main UI, state management, search
 ├── PeekablePDFView.swift       # Custom PDFView subclass (peek popover logic)
 ├── PDFKitView.swift            # SwiftUI wrapper for PDFKit
