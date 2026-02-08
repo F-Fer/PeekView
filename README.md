@@ -1,5 +1,7 @@
 # PeekView
 
+![PeekView Banner](assets/imgs/banner.png)
+
 A macOS PDF reader built for academic papers. Click any in-document reference link and a popover appears showing the target page — no scrolling, no losing your place.
 
 ## Features
